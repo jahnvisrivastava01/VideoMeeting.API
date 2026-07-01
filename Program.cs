@@ -8,19 +8,18 @@ using VideoMeeting.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add Controllers
+
 builder.Services.AddControllers();
 
-// Database
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Dependency Injection
+
 builder.Services.AddScoped<PasswordService>();
 builder.Services.AddScoped<JwtService>();
 
-// JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -39,7 +38,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-// Swagger
+
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(options =>
@@ -78,7 +77,6 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
-// Configure Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -87,7 +85,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Authentication MUST come before Authorization
+
 app.UseAuthentication();
 app.UseAuthorization();
 
