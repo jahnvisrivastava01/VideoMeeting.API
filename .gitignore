@@ -1,0 +1,14 @@
+bin/
+obj/
+.vs/
+.vscode/
+
+*.user
+*.suo
+*.log
+
+.env
+
+publish/
+
+TestResults/

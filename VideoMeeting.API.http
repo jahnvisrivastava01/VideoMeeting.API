@@ -1,0 +1,6 @@
+@VideoMeeting.API_HostAddress = http://localhost:5017
+
+GET {{VideoMeeting.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
